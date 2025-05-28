@@ -9,6 +9,10 @@ import (
 	"github.com/4arnab/note-taking-app/note"
 )
 
+type saver interface {
+	Save(int, string) error
+}
+
 func main() {
 	title, content := getNoteData()
 	userNote, err := note.New(title, content)
@@ -31,6 +35,9 @@ func main() {
 	fmt.Print("SUCCESS TO SAVE FILE")
 }
 
+func add[T int | float64 | string](a, b T) T { // GENERIC FUNCTION
+	return a + b
+}
 func getNoteData() (string, string) {
 	title := getUserInput("Note Title: ")
 	content := getUserInput("Note Content: ")
